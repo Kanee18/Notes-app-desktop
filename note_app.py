@@ -42,7 +42,7 @@ if __name__ == '__main__':
     tray_thread = threading.Thread(target=create_tray_icon)
     tray_thread.daemon = True
     tray_thread.start()
-#
+
     window = webview.create_window(
         'Aplikasi Note Tugas',
         app,
