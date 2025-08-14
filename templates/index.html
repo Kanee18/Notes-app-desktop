@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Note Tugas</title>
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+    
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <h1 class="sidebar-title">Task Notes</h1>
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active">Dashboard</a>
+                </nav>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="calendar-container">
+                    <div id="calendar"></div>
+                </div>
+
+                <button id="settings-button" class="settings-button">Settings</button>
+                
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h2>MY NOTES</h2>
+                <button id="sync-button" class="sync-button">Sync Data</button>
+            </header>
+            <div id="kanban-board" class="kanban-board"></div>
+        </main>
+    </div>
+
+    <div id="add-task-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Tambah Tugas Baru</h3>
+            <form id="add-task-form">
+                <div class="form-group">
+                    <label for="mata-kuliah">Mata Kuliah</label>
+                    <input type="text" id="mata-kuliah" name="mata_kuliah" required>
+                </div>
+                <div class="form-group">
+                    <label for="deskripsi-tugas">Deskripsi Tugas</label>
+                    <textarea id="deskripsi-tugas" name="deskripsi_tugas" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="deadline">Deadline</label>
+                    <input type="text" id="deadline" name="deadline" placeholder="cth: besok jam 10 malam" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancel-button" class="button-secondary">Batal</button>
+                    <button type="submit" class="button-primary">Simpan Tugas</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        <div id="settings-overlay" class="settings-overlay hidden"></div>
+    <div id="settings-panel" class="settings-panel">
+        <div class="settings-header">
+            <h3>Settings</h3>
+            <button id="close-settings-button" class="close-button">&times;</button>
+        </div>
+        <div class="settings-content">
+            <div class="setting-section">
+                <h4>Appearance</h4>
+                <div class="setting-item">
+                    <span>Theme</span>
+                    <div class="theme-switcher">
+                        <button data-theme="light" class="theme-option">Light</button>
+                        <button data-theme="dark" class="theme-option">Dark</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="setting-section">
+                <h4>Connect</h4>
+                <div class="setting-item-column">
+                    <label for="telegram-token">Telegram Token</label>
+                    <input type="password" id="telegram-token" placeholder="Masukkan token bot Anda">
+                </div>
+                <div class="setting-item-column">
+                    <label for="telegram-id">Telegram User ID</label>
+                    <input type="text" id="telegram-id" placeholder="Masukkan ID user Anda">
+                </div>
+                <div class="setting-item">
+                    <button id="save-settings-button" class="button-primary">Save Settings</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

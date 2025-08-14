@@ -1,0 +1,28 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Database lokal
+notes.db
+*.sqlite3
+
+# File build PyInstaller
+build/
+dist/
+*.spec
+
+# File sensitif dan konfigurasi lokal
+firebase-credentials.json
+settings.json
+
+# Dependensi Node.js
+node_modules/
+
+# File sistem operasi
+.DS_Store
+Thumbs.db
