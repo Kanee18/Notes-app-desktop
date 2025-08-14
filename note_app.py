@@ -43,7 +43,6 @@ if __name__ == '__main__':
     tray_thread.daemon = True
     tray_thread.start()
 
-    # --- PERUBAHAN UTAMA DI SINI ---
     window = webview.create_window(
         'Aplikasi Note Tugas',
         app,
