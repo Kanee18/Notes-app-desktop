@@ -1,4 +1,4 @@
-# NOTES-APP: A Desktop Task Management Application
+r# NOTES-APP: A Desktop Task Management Application
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
@@ -6,7 +6,7 @@ A modern desktop application for managing notes and tasks, featuring a Kanban bo
 
 <br>
 
-![Notes-App Screenshot](https://place-hold.it/800x500?text=Your%20App%20Screenshot%20Here&fontsize=24)
+![Notes-App Screenshot](https://place-hold.it/800x500?text=Error=24)
 *Replace the placeholder above with a screenshot of your application.*
 
 ---
