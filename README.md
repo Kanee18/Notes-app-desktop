@@ -1,4 +1,4 @@
-r# NOTES-APP: A Desktop Task Management Application
+# NOTES-APP: A Desktop Task Management Application
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
