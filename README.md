@@ -9,20 +9,6 @@ A modern desktop application for managing notes and tasks, featuring a Kanban bo
 ![Notes-App Screenshot](https://place-hold.it/800x500?text=Error=24)
 *Replace the placeholder above with a screenshot of your application.*
 
----
-
-## 📋 Table of Contents
-
-* [About The Project](#about-the-project)
-* [Key Features](#key-features)
-* [Tech Stack](#tech-stack)
-* [Getting Started](#getting-started)
-    * [Prerequisites](#prerequisites)
-    * [Installation & Configuration](#installation--configuration)
-* [Usage](#usage)
-* [Contributing](#contributing)
-* [License](#license)
-
 ## 🚀 About The Project
 
 Notes-App is a comprehensive solution designed to help users, especially students, keep track of their tasks and deadlines efficiently. The application provides a clean, intuitive user interface with both a Kanban board for workflow visualization and a calendar for a clear overview of upcoming deadlines.
