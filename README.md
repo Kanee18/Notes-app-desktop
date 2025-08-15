@@ -7,7 +7,6 @@ A modern desktop application for managing notes and tasks, featuring a Kanban bo
 <br>
 
 ![Notes-App Screenshot](https://place-hold.it/800x500?text=Error=24)
-*Replace the placeholder above with a screenshot of your application.*
 
 ## 🚀 About The Project
 
