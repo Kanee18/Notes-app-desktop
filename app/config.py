@@ -2,7 +2,6 @@
 
 import os
 
-# --- CONFIGURATION PATH ---
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CRED_PATH = os.path.join(BASE_DIR, "firebase-credentials.json") 
 DB_PATH = os.path.join(BASE_DIR, "notes.db")

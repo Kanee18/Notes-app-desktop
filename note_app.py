@@ -44,7 +44,7 @@ if __name__ == '__main__':
     tray_thread.start()
 
     window = webview.create_window(
-        'Aplikasi Note Tugas',
+        'Note App',
         app,
         width=1200,             
         height=900,             
