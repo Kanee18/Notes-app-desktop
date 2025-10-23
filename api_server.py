@@ -28,7 +28,6 @@ from app.services.firebase_service import firebase_service
 from bot.bot_logic import parse_note_text
 
 def serialize_notes_obj(note):
-    # pastikan serialisasi struktur sesuai dengan JS frontend!
     return {
         "id": note["id"],
         "mata_kuliah": note["mata_kuliah"],
