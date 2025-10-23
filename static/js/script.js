@@ -13,6 +13,12 @@ applyTheme(savedTheme);
 const API_BASE_URL = 'http://127.0.0.1:5000';
 let calendar = null;
 
+const socket = io('http://127.0.0.1:5000');
+socket.on('notes_updated', (data) => {
+    renderKanbanBoard(data.notes);
+    renderCalendar(data.notes);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const syncButton = document.getElementById('sync-button');
     const kanbanBoard = document.getElementById('kanban-board');
@@ -194,6 +200,12 @@ function renderCalendar(notes) {
 
     calendar.render();
 }
+
+// setInterval(() => {
+//   fetch(`${API_BASE_URL}/api/sync`, { method: 'POST' }).then(() => {
+//     fetchAndDisplayNotes();
+//   });
+// }, 5000);
 
 function createColumn(title) {
     const column = document.createElement('div');
