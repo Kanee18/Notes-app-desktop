@@ -27,14 +27,13 @@ body.dark-mode {
 }
 
 body {
-    font-family: 'JetBrains Mono', monospace;
-    margin: 0;
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    display: flex;
-    height: 100vh;
-    overflow: hidden;
-    transition: background-color 0.3s, color 0.3s;
+  font-family: 'JetBrains Mono', monospace;
+  margin: 0;
+  background-color: #f4f7f9;
+  color: #1e293b;
+  display: flex;
+  height: 100vh;
+  overflow: hidden; 
 }
 
 .app-container {
@@ -203,7 +202,7 @@ body.dark-mode .settings-panel {
     padding: 24px 40px;
     display: flex;
     flex-direction: column;
-    overflow-x: auto;
+    overflow: hidden;
     transition: background-color 0.3s;
 }
 .main-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-shrink: 0; }
@@ -212,9 +211,10 @@ body.dark-mode .settings-panel {
 .sync-button:hover { background-color: var(--bg-color); border-color: #cbd5e1; }
 
 .kanban-board {
-    display: flex;
-    gap: 24px;
-    flex-grow: 1;
+  display: flex;
+  gap: 24px;
+  flex: 1 1 auto;
+  min-height: 0;      
 }
 
 .kanban-column {
@@ -227,14 +227,20 @@ body.dark-mode .settings-panel {
     border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
+    min-height: 0;
 }
 
 .cards-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    align-content: flex-start;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: grid;
+  grid-template-rows: auto;   
+  grid-auto-rows: min-content; 
+  gap: 15px;
+  align-content: flex-start;   
 }
+
 
 .task-card {
     background-color: var(--card-bg);
@@ -376,3 +382,4 @@ body.dark-mode {
     width: 100%;
     margin-top: 10px; 
 }
+
