@@ -1,5 +1,6 @@
 # File: bot/bot_logic.py
 
+import requests
 from telegram import Update
 from telegram.ext import ContextTypes
 
@@ -48,3 +49,6 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(reply_text, parse_mode='Markdown')
     else:
         await update.message.reply_text("Sorry, an error occurred while saving data to the database.")
+        
+    requests.post("http://127.0.0.1:5000/api/sync")
+

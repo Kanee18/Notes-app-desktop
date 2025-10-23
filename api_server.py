@@ -68,7 +68,6 @@ def sync_with_firestore_api():
     try:
         firestore_notes_stream = firebase_service.get_notes_for_user(user_id)
         sync_notes_from_firestore(list(firestore_notes_stream))
-        # setelah sync, emit ke semua frontend:
         local_notes = get_all_local_notes()
         socketio.emit('notes_updated', {'notes': [serialize_notes_obj(note) for note in local_notes]})
         return jsonify({"message": "Synchronization successful"}), 200
@@ -96,7 +95,6 @@ def add_note_api():
     if doc_ref:
         firestore_notes_stream = firebase_service.get_notes_for_user(user_id)
         sync_notes_from_firestore(list(firestore_notes_stream))
-        # Emit langsung ke frontend
         local_notes = get_all_local_notes()
         socketio.emit('notes_updated', {'notes': [serialize_notes_obj(note) for note in local_notes]})
         return jsonify({"message": "Task added successfully"}), 201
