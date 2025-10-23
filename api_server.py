@@ -137,5 +137,4 @@ def update_settings():
     return jsonify({"message": "Settings saved successfully."}), 200
 
 if __name__ == '__main__':
-    # gunakan socketio untuk run server!
     socketio.run(app, debug=True, port=5000)
