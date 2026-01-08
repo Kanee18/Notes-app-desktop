@@ -6,7 +6,7 @@
 
 A modern desktop application for managing notes and tasks, featuring a Kanban board, calendar view, real-time cloud synchronization with Firebase, AI assistant powered by Groq, and deadline notifications via a Telegram bot.
 
-## 🚀 About The Project
+## About The Project
 
 Notes-App is a comprehensive solution designed to help users, especially students, keep track of their tasks and deadlines efficiently. The application provides a clean, intuitive user interface with both a Kanban board for workflow visualization and a calendar for a clear overview of upcoming deadlines.
 
@@ -20,7 +20,7 @@ Notes-App is a comprehensive solution designed to help users, especially student
 - **Light & Dark Mode:** Switch between themes
 - **System Tray Integration:** Run in background, accessible from system tray
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
@@ -33,7 +33,7 @@ Notes-App is a comprehensive solution designed to help users, especially student
 
 ---
 
-## ⚙️ Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -110,7 +110,7 @@ export GROQ_API_KEY="your_groq_api_key_here"
 
 ---
 
-## ▶️ Running the Application
+## Running the Application
 
 ### Option 1: Run All Services (Recommended)
 
@@ -148,7 +148,7 @@ python note_app.py
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Notes-app-desktop/
@@ -177,7 +177,7 @@ Notes-app-desktop/
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 | Issue | Solution |
 |-------|----------|
@@ -188,13 +188,13 @@ Notes-app-desktop/
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 👤 Author
+## Author
 
 **Kanee18**
 
