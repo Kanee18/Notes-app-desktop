@@ -53,4 +53,4 @@ if __name__ == '__main__':
 
     window.events.closing += on_closing
 
-    webview.start(debug=True)
+    webview.start(debug=False)

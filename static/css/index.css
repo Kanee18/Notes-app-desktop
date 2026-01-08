@@ -13,19 +13,6 @@
     --shadow-color: rgba(149, 157, 165, 0.1);
 }
 
-body.dark-mode {
-    --bg-color: #0f172a;
-    --sidebar-bg: #1e293b;
-    --main-content-bg: #0f172a;
-    --column-bg: #1e293b;
-    --card-bg: #334155;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --accent-color: #60a5fa;
-    --border-color: #334155;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-}
-
 body {
     font-family: 'JetBrains Mono', monospace;
     margin: 0;
@@ -128,6 +115,16 @@ body {
 .settings-button:hover {
     background-color: var(--bg-color);
     color: var(--text-primary);
+}
+
+/* Page Header Styling - consistent for all pages */
+.main-header h2,
+.ai-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-primary);
+    letter-spacing: 0.5px;
 }
 
 .settings-overlay {

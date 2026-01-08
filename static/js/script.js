@@ -314,10 +314,12 @@ function createTaskCard(note) {
         ${overdueIndicator}
     `;
 
-    // ADD CLICK LISTENER FOR DETAIL VIEW
+    // ADD CLICK LISTENER FOR DETAIL VIEW (only for non-completed tasks)
     card.addEventListener('click', (e) => {
         // Ignore if clicked on buttons
         if (e.target.closest('button')) return;
+        // Ignore if task is already completed - no editing allowed
+        if (note.status === 'completed') return;
         openViewNoteModal(note.id);
     });
 
@@ -394,7 +396,8 @@ function initAskAIPage() {
             const prompt = btn.dataset.prompt;
             const inputEl = document.getElementById('ai-input');
             inputEl.value = prompt;
-            sendAIMessage();
+            inputEl.focus(); // Focus on input so user can edit or press Enter
+            // Removed: sendAIMessage() - let user review before sending
         });
     });
 }
@@ -452,10 +455,8 @@ async function sendAIMessage() {
 
     if (!prompt) return;
 
-    if (!currentTaskForAI) {
-        alert('Silakan pilih tugas terlebih dahulu!');
-        return;
-    }
+    // Task selection is now OPTIONAL - can chat without selecting task
+    // Removed the requirement check
 
     // Hide welcome screen
     if (welcome) welcome.style.display = 'none';
@@ -468,13 +469,19 @@ async function sendAIMessage() {
     const loadingId = 'loading-' + Date.now();
     appendMessage('Sedang berpikir...', 'ai', loadingId);
 
+    // Build context - only include task info if a task is selected
+    let context = '';
+    if (currentTaskForAI) {
+        context = `Mata Kuliah: ${currentTaskForAI.mata_kuliah}\nDeskripsi: ${currentTaskForAI.deskripsi_tugas}\nDeadline: ${currentTaskForAI.tanggal_deadline_str}`;
+    }
+
     try {
         const response = await fetch(`${API_BASE_URL}/api/ask-ai`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 prompt: prompt,
-                context: `Mata Kuliah: ${currentTaskForAI.mata_kuliah}\nDeskripsi: ${currentTaskForAI.deskripsi_tugas}\nDeadline: ${currentTaskForAI.tanggal_deadline_str}`
+                context: context
             })
         });
 
