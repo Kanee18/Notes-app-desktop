@@ -24,9 +24,67 @@ def init_local_db():
             user_id INTEGER 
         )
     ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS chat_sessions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            title TEXT,
+            created_at INTEGER
+        )
+    ''')
+
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS chat_messages (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id INTEGER,
+            sender TEXT,
+            content TEXT,
+            timestamp INTEGER,
+            FOREIGN KEY(session_id) REFERENCES chat_sessions(id) ON DELETE CASCADE
+        )
+    ''')
     conn.commit()
     conn.close()
-    print("Local database initialized with correct schema (including user_id).")
+    print("Local database initialized with correct schema (notes, chats).")
+
+# ================= CHAT FUNCTIONS =================
+
+def create_chat_session(title):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    created_at = int(datetime.now().timestamp())
+    cursor.execute("INSERT INTO chat_sessions (title, created_at) VALUES (?, ?)", (title, created_at))
+    session_id = cursor.lastrowid
+    conn.commit()
+    conn.close()
+    return session_id
+
+def get_chat_sessions():
+    conn = get_db_connection()
+    sessions = conn.execute("SELECT * FROM chat_sessions ORDER BY created_at DESC").fetchall()
+    conn.close()
+    return sessions
+
+def delete_chat_session(session_id):
+    conn = get_db_connection()
+    conn.execute("DELETE FROM chat_sessions WHERE id = ?", (session_id,))
+    conn.execute("DELETE FROM chat_messages WHERE session_id = ?", (session_id,))
+    conn.commit()
+    conn.close()
+
+def add_chat_message(session_id, sender, content):
+    conn = get_db_connection()
+    timestamp = int(datetime.now().timestamp())
+    conn.execute("INSERT INTO chat_messages (session_id, sender, content, timestamp) VALUES (?, ?, ?, ?)", 
+                 (session_id, sender, content, timestamp))
+    conn.commit()
+    conn.close()
+
+def get_chat_messages(session_id):
+    conn = get_db_connection()
+    messages = conn.execute("SELECT * FROM chat_messages WHERE session_id = ? ORDER BY timestamp ASC", (session_id,)).fetchall()
+    conn.close()
+    return messages
 
 def sync_notes_from_firestore(firestore_notes):
     conn = get_db_connection()

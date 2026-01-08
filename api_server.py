@@ -22,7 +22,12 @@ from app.core.database import (
     init_local_db,
     update_note_status,
     delete_note_from_local_db,
-    sync_notes_from_firestore
+    sync_notes_from_firestore,
+    create_chat_session,
+    get_chat_sessions,
+    delete_chat_session,
+    add_chat_message,
+    get_chat_messages
 )
 from app.services.firebase_service import firebase_service
 from bot.bot_logic import parse_note_text
@@ -227,9 +232,40 @@ def ask_ai():
             return jsonify({"error": f"Groq Error: {response.json().get('error', {}).get('message', 'Unknown error')}"}), 500
         
         generated_text = response.json()['choices'][0]['message']['content']
+        
+        # Save messages to session if session_id provided
+        session_id = data.get('session_id')
+        if session_id:
+            add_chat_message(session_id, 'user', prompt)
+            add_chat_message(session_id, 'ai', generated_text)
+        
         return jsonify({"response": generated_text}), 200
     except Exception as e:
         return jsonify({"error": f"Groq Connection Error: {str(e)}"}), 500
+
+# ================= CHAT SESSION ENDPOINTS =================
+
+@app.route('/api/chat-sessions', methods=['GET'])
+def get_all_chat_sessions():
+    sessions = get_chat_sessions()
+    return jsonify([{"id": s["id"], "title": s["title"], "created_at": s["created_at"]} for s in sessions])
+
+@app.route('/api/chat-sessions', methods=['POST'])
+def create_new_chat_session():
+    data = request.get_json()
+    title = data.get('title', 'New Chat')
+    session_id = create_chat_session(title)
+    return jsonify({"id": session_id, "title": title}), 201
+
+@app.route('/api/chat-sessions/<int:session_id>', methods=['DELETE'])
+def delete_session(session_id):
+    delete_chat_session(session_id)
+    return jsonify({"message": f"Session {session_id} deleted"}), 200
+
+@app.route('/api/chat-sessions/<int:session_id>/messages', methods=['GET'])
+def get_session_messages(session_id):
+    messages = get_chat_messages(session_id)
+    return jsonify([{"id": m["id"], "sender": m["sender"], "content": m["content"], "timestamp": m["timestamp"]} for m in messages])
 
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=5000)

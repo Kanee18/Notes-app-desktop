@@ -396,8 +396,7 @@ function initAskAIPage() {
             const prompt = btn.dataset.prompt;
             const inputEl = document.getElementById('ai-input');
             inputEl.value = prompt;
-            inputEl.focus(); // Focus on input so user can edit or press Enter
-            // Removed: sendAIMessage() - let user review before sending
+            inputEl.focus();
         });
     });
 }
